@@ -60,7 +60,9 @@ const images = {
   installJsCodeShift: require("./assets/images/installjscodeshift.png"),
   installReactMods: require("./assets/images/installreactcodemod.png"),
   runReactMods: require("./assets/images/runcodemods.png"),
-  beerArrow: require("./assets/images/beerarrow.png")
+  beerArrow: require("./assets/images/beerarrow.png"),
+  flow: require("./assets/images/flow.png"),
+  flowUpgrade: require("./assets/images/flowupgrade.png")
 };
 
 const FunHeading = styled(Heading)`
@@ -77,7 +79,6 @@ const FunHeading = styled(Heading)`
 `;
 
 const createClassSnippet = `
-import React from 'react';
 
 const App = React.createClass({
   render() {
@@ -87,8 +88,6 @@ const App = React.createClass({
 `;
 
 const extendsClassSnippet = `
-import React from 'react';
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -103,11 +102,10 @@ const bindThisSnippet = `
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleClick = 
+      this.handleClick.bind(this);
   }
-  handleClick() {
-    // Do thing
-  }
+  handleClick() { // Do thing }
 }
 `;
 
@@ -124,6 +122,15 @@ const LargeCodePane = styled(CodePane)`
   font-size: 2.5rem !important;
 `;
 
+const hoistNonReactStaticSnippet = `
+import hoistNonReactStatic from 'hoist-non-react-statics';
+function enhance(WrappedComponent) {
+  class Enhance extends React.Component {/*...*/}
+  hoistNonReactStatic(Enhance, WrappedComponent);
+  return Enhance;
+}
+`;
+
 export default class Presentation extends React.Component {
   render() {
     return (
@@ -138,7 +145,7 @@ export default class Presentation extends React.Component {
           </Heading>
           <Layout>
             <Fill>
-              <Heading size={6} caps textColor="primary" bgColor="tertiary" margin={10} padding={"5px 0"}>
+              <Heading size={6} caps textColor="secondary" bgColor="tertiary" margin={10} padding={"5px 0"}>
                 Marcel Cutts
               </Heading>
             </Fill>
@@ -222,7 +229,7 @@ export default class Presentation extends React.Component {
 
         <Slide transition={["slide"]} bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="tertiary">
-            Continuing progrss!
+            Continuing progress!
           </Heading>
           <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
             ♻️️ Fiber!
@@ -316,6 +323,18 @@ export default class Presentation extends React.Component {
         <Slide transition={["slide"]} bgImage={images.devops} />
 
         <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={2} caps lineHeight={1} margin={"50px 0"} textColor="secondary">
+            <BlueHighlightBlock>Syntax</BlueHighlightBlock> Churn
+          </Heading>
+          <Heading size={2} caps lineHeight={1} margin={"50px 0"} textColor="secondary">
+            <BlueHighlightBlock>Package</BlueHighlightBlock> Churn
+          </Heading>
+          <Heading size={2} caps lineHeight={1} margin={"50px 0"} textColor="secondary">
+            <BlueHighlightBlock>Tooling</BlueHighlightBlock> Churn
+          </Heading>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="tertiary">
             Syntax
           </Heading>
@@ -333,20 +352,20 @@ export default class Presentation extends React.Component {
           </Slide>
         </Magic>
 
-         <Slide transition={["slide"]} bgColor="secondary">
-          <Heading size={1} fit lineHeight={1} textColor="tertiary">
+        <Slide transition={["slide"]} bgColor="secondary">
+          <Heading size={1} fit lineHeight={1} textColor="primary">
             OK - so just change it?
           </Heading>
         </Slide>
 
         <Slide transition={["slide"]} bgColor="secondary">
-          <Heading size={1} fit lineHeight={1} textColor="tertiary">
+          <Heading size={1} fit lineHeight={1} textColor="primary">
             You whine a lot.
           </Heading>
-        </Slide> 
+        </Slide>
 
-       <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={6} caps lineHeight={1} textAlign="left" margin={"50px 0"} textColor="secondary">
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={4} fit lineHeight={1} margin={"50px 0"} textColor="tertiary">
             Too complex for find+replace
           </Heading>
           <Heading size={6} caps lineHeight={1} textAlign="left" margin={"50px 0"} textColor="secondary">
@@ -354,6 +373,12 @@ export default class Presentation extends React.Component {
           </Heading>
           <Heading size={6} caps lineHeight={1} textAlign="left" margin={"50px 0"} textColor="secondary">
             `this` is not auto-bound
+          </Heading>
+          <Heading size={6} caps lineHeight={1} textAlign="left" margin={"50px 0"} textColor="secondary">
+            Constructors require care
+          </Heading>
+          <Heading size={6} caps lineHeight={1} textAlign="left" margin={"50px 0"} textColor="secondary">
+            ...
           </Heading>
         </Slide>
 
@@ -408,7 +433,7 @@ export default class Presentation extends React.Component {
           </Heading>
         </Slide>
 
-         {/* Stress marcel */ }
+        {/* Stress marcel */}
 
         <Slide transition={["slide"]} bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="secondary">
@@ -450,7 +475,7 @@ export default class Presentation extends React.Component {
             JSCodeShift!
           </Heading>
           <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-          toolkit for running codemods over multiple JS files
+            toolkit for running codemods over multiple JS files
           </Heading>
         </Slide>
 
@@ -467,8 +492,7 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide transition={["slide"]} bgColor="primary">
-         
-        <Heading size={1} fit caps lineHeight={1} textColor="secondary">
+          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
             Arrow Property Initializer
           </Heading>
           <Heading size={1} fit caps lineHeight={1} textColor="tertiary">
@@ -489,18 +513,18 @@ export default class Presentation extends React.Component {
 
         <Slide transition={["slide"]} bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Can JSCodeShift help us
+            Can JSCodeShift <BlueHighlightBlock>Modernise</BlueHighlightBlock> 
           </Heading>
           <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Modernise beer management?
+            beer management? 🍺
           </Heading>
         </Slide>
 
-        { /* Look at application */ }
+        {/* Look at application */}
 
         <Slide transition={["slide"]} bgImage={images.beerBindThis} />
 
-        { /* Look at browser */ }
+        {/* Look at browser */}
 
         <Slide transition={["slide"]} bgImage={images.installJsCodeShift} />
 
@@ -517,29 +541,17 @@ export default class Presentation extends React.Component {
           <Heading size={1} fit lineHeight={1} textColor="primary">
             React syntax has settled
           </Heading>
-        </Slide> 
-
-        <Slide transition={["slide"]} bgColor="primary">
-          <Image src={images.flow} height="100%"/>
         </Slide>
 
         <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Package churn
-          </Heading>
+          <Image src={images.flow} height="100%" />
         </Slide>
 
-        <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            All these packages! Hard to keep them all together
-          </Heading>
-        </Slide>
+        <Slide transition={["slide"]} bgImage={images.flowUpgrade} />
 
-        <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            ....ReasonML (hot reload, built in styles, compiler)
-          </Heading>
-        </Slide>
+        {/* Maybe talk about reasonml elm */}
+
+        {/* Happy marcel pic */}
 
         {/* CONTEXT */}
 
@@ -600,10 +612,148 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} fit caps lineHeight={1} textColor="tertiary">
+            Higher Order Components
+          </Heading>
           <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            What is it
+          A function that takes a component and returns a new component
           </Heading>
         </Slide>
+
+
+         <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} fit caps lineHeight={1} textColor="tertiary">
+            Higher order components
+          </Heading>
+          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
+            ♻️️ Great for code reuse
+          </Heading>  
+          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
+            🏎 Replace mixins
+          </Heading>
+          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
+            🔍 Composition, not inheritance
+          </Heading>
+        </Slide>
+
+
+         <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} fit caps lineHeight={1} textColor="tertiary">
+            Functional
+          </Heading>
+          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
+            Like the <BlueHighlightBlock>cool kids</BlueHighlightBlock>
+          </Heading>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} fit caps lineHeight={1} textColor="tertiary">
+            Recognise this from your favourite libraries?
+          </Heading>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} fit caps lineHeight={1} textColor="tertiary">
+            React Router: <BlueHighlightBlock>withRouter()</BlueHighlightBlock>
+          </Heading>
+          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
+            Grab router from context
+          </Heading>  
+          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
+            Pass down to wrapped component as prop
+          </Heading>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} fit caps lineHeight={1} textColor="tertiary">
+            Decorators <BlueHighlightBlock>@</BlueHighlightBlock>
+          </Heading>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="secondary">
+          <Heading size={1} fit lineHeight={1} textColor="primary">
+            This sounds great!
+          </Heading>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="secondary">
+          <Heading size={1} fit lineHeight={1} textColor="primary">
+            Why are you complaining?
+          </Heading>
+        </Slide>
+
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} fit lineHeight={1} textColor="Tertiary">
+            Ceremony
+          </Heading>
+          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
+            - Hoist over static properties
+          </Heading>  
+          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
+            - Ref callbacks (not _really_ a prop)
+          </Heading>
+          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
+            - New component layer each time
+          </Heading>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="secondary">
+          <LargeCodePane source={hoistNonReactStaticSnippet} lang="javascript" />
+        </Slide>
+
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} fit lineHeight={1} textColor="tertiary">
+            Indirection
+          </Heading>
+          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
+          A component shows <BlueHighlightBlock>incorrect data</BlueHighlightBlock>
+          </Heading>  
+          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
+          Component is wrapped by 3 higher order components
+          </Heading>
+          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
+          Which higer order component(s) are wrong?
+          </Heading>
+        </Slide>
+
+         <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} fit lineHeight={1} textColor="tertiary">
+            Naming
+          </Heading>
+          <Heading size={5} lineHeight={1} textColor="secondary">
+            Two higher order components are applied
+            </Heading>
+            <Heading size={5} lineHeight={1} textColor="secondary">
+            Both want to apply a value to prop.beerLeft
+          </Heading>
+          <Heading size={5} lineHeight={1} textColor="secondary">
+            Last one wins.
+          </Heading>
+          <Heading size={5} lineHeight={1} textColor="secondary">
+            Two higher order components are applied
+            </Heading>
+          
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="secondary">
+          <Heading size={1} fit lineHeight={1} textColor="primary">
+            Lifecycle drawbacks
+          </Heading>
+          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
+          Composition is static
+          </Heading>  
+          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
+          Can't wrap component in render 💥 
+          </Heading>
+          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
+          Can't utilise lifecycle methods
+          </Heading>
+        </Slide>
+
+
+        { /* Higher orer function} */ }
 
         <Slide transition={["slide"]} bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="secondary">
