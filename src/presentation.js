@@ -55,7 +55,12 @@ const images = {
   twitter: require("./assets/images/twitter.png"),
   stateOfJs: require("./assets/images/stateofjs.png"),
   rocket: require("./assets/images/rocket.jpg"),
-  devops: require("./assets/images/devops.png")
+  devops: require("./assets/images/devops.png"),
+  beerBindThis: require("./assets/images/beerbindthis.png"),
+  installJsCodeShift: require("./assets/images/installjscodeshift.png"),
+  installReactMods: require("./assets/images/installreactcodemod.png"),
+  runReactMods: require("./assets/images/runcodemods.png"),
+  beerArrow: require("./assets/images/beerarrow.png")
 };
 
 const FunHeading = styled(Heading)`
@@ -79,8 +84,6 @@ const App = React.createClass({
     return <div></div>;
   }
 });
-
-export default App;
 `;
 
 const extendsClassSnippet = `
@@ -94,12 +97,31 @@ class App extends React.Component {
     return <div></div>;
   }
 }
+`;
 
-export default App;
+const bindThisSnippet = `
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    // Do thing
+  }
+}
+`;
+
+const arrowPropertyInitializerSnippet = `
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  handleClick = () => { // do thing}
+}
 `;
 
 const LargeCodePane = styled(CodePane)`
-  font-size: 2.4rem !important;
+  font-size: 2.5rem !important;
 `;
 
 export default class Presentation extends React.Component {
@@ -294,8 +316,11 @@ export default class Presentation extends React.Component {
         <Slide transition={["slide"]} bgImage={images.devops} />
 
         <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} fit caps lineHeight={1} textColor="tertiary">
+            Syntax
+          </Heading>
           <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Syntax Churn
+            Churn
           </Heading>
         </Slide>
 
@@ -307,6 +332,92 @@ export default class Presentation extends React.Component {
             <LargeCodePane source={extendsClassSnippet} lang="javascript" />
           </Slide>
         </Magic>
+
+         <Slide transition={["slide"]} bgColor="secondary">
+          <Heading size={1} fit lineHeight={1} textColor="tertiary">
+            OK - so just change it?
+          </Heading>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="secondary">
+          <Heading size={1} fit lineHeight={1} textColor="tertiary">
+            You whine a lot.
+          </Heading>
+        </Slide> 
+
+       <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={6} caps lineHeight={1} textAlign="left" margin={"50px 0"} textColor="secondary">
+            Too complex for find+replace
+          </Heading>
+          <Heading size={6} caps lineHeight={1} textAlign="left" margin={"50px 0"} textColor="secondary">
+            Mixins don't work any more
+          </Heading>
+          <Heading size={6} caps lineHeight={1} textAlign="left" margin={"50px 0"} textColor="secondary">
+            `this` is not auto-bound
+          </Heading>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} fit caps lineHeight={1} textColor="tertiary">
+            Large codebase
+          </Heading>
+          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
+            Big Bang vs. Gradual
+          </Heading>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={3} caps lineHeight={1} textColor="tertiary">
+            Gradual Update
+          </Heading>
+          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
+            + No big disruption
+          </Heading>
+          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
+            - Complete in time?
+          </Heading>
+          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
+            - Mixed codebase
+          </Heading>
+          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
+            - Hacky solutons
+          </Heading>
+          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
+            - Developer fear / stress
+          </Heading>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={3} caps lineHeight={1} textColor="tertiary">
+            Big Bang
+          </Heading>
+          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
+            + Less total disruptioon
+          </Heading>
+          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
+            + Clean codebase
+          </Heading>
+          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
+            - Feature velocity
+          </Heading>
+          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
+            - Confidence in codebase
+          </Heading>
+          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
+            - Conflicts am become god
+          </Heading>
+        </Slide>
+
+         {/* Stress marcel */ }
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
+            Big Bang
+          </Heading>
+          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
+            Done <BlueHighlightBlock>instantly.</BlueHighlightBlock>
+          </Heading>
+        </Slide>
 
         {/* why annoy? either mixed codebase mess, performance, mixins, big work, conflicts */}
 
@@ -324,64 +435,92 @@ export default class Presentation extends React.Component {
             Codemods!
           </Heading>
           <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
-            Made here
+            👌 Made here
           </Heading>
           <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
-            Been around a while
+            🧓 Been around a while
           </Heading>
           <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
-            Written in 🐍
+            🐍 Written in Python
           </Heading>
         </Slide>
 
         <Slide transition={["slide"]} bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Loads pre made!
+            JSCodeShift!
+          </Heading>
+          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
+          toolkit for running codemods over multiple JS files
           </Heading>
         </Slide>
 
         <Slide transition={["slide"]} bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Lets have an example...
+            Loads pre-made!
           </Heading>
         </Slide>
 
         <Slide transition={["slide"]} bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Class bind this (sneakily got rid of impliciting binding)
+            Lets do an example...
           </Heading>
         </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
+         
+        <Heading size={1} fit caps lineHeight={1} textColor="secondary">
+            Arrow Property Initializer
+          </Heading>
+          <Heading size={1} fit caps lineHeight={1} textColor="tertiary">
+            = () =>
+          </Heading>
+        </Slide>
+
+        <Magic>
+          <Slide bgColor="#2a2734">
+            <LargeCodePane source={bindThisSnippet} lang="javascript" />
+          </Slide>
+          <Slide bgColor="#2a2734">
+            <LargeCodePane source={arrowPropertyInitializerSnippet} lang="javascript" />
+          </Slide>
+        </Magic>
 
         {/* Hard to find and replace */}
 
         <Slide transition={["slide"]} bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Find react
+            Can JSCodeShift help us
+          </Heading>
+          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
+            Modernise beer management?
           </Heading>
         </Slide>
 
-        <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Bind to arrow
+        { /* Look at application */ }
+
+        <Slide transition={["slide"]} bgImage={images.beerBindThis} />
+
+        { /* Look at browser */ }
+
+        <Slide transition={["slide"]} bgImage={images.installJsCodeShift} />
+
+        <Slide transition={["slide"]} bgImage={images.installReactMods} />
+
+        <Slide transition={["slide"]} bgImage={images.runReactMods} />
+
+        <Slide transition={["slide"]} bgImage={images.beerArrow} />
+
+        <Slide transition={["slide"]} bgColor="secondary">
+          <Heading size={1} fit lineHeight={1} textColor="primary">
+            Boring!
           </Heading>
-        </Slide>
+          <Heading size={1} fit lineHeight={1} textColor="primary">
+            React syntax has settled
+          </Heading>
+        </Slide> 
 
         <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Do the thing
-          </Heading>
-        </Slide>
-
-        <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Many things for incremental package updates
-          </Heading>
-        </Slide>
-
-        <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            flow upgrade
-          </Heading>
+          <Image src={images.flow} height="100%"/>
         </Slide>
 
         <Slide transition={["slide"]} bgColor="primary">
