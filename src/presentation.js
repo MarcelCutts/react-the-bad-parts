@@ -62,7 +62,18 @@ const images = {
   runReactMods: require("./assets/images/runcodemods.png"),
   beerArrow: require("./assets/images/beerarrow.png"),
   flow: require("./assets/images/flow.png"),
-  flowUpgrade: require("./assets/images/flowupgrade.png")
+  flowUpgrade: require("./assets/images/flowupgrade.png"),
+  tree: require("./assets/images/tree.png"),
+  propsDestination: require("./assets/images/propsdestination.png"),
+  propsTravel: require("./assets/images/propstravel.png"),
+  propsArrive: require("./assets/images/propsarrive.png"),
+  treeContext: require("./assets/images/treecontext.png"),
+  styledComponents: require("./assets/images/styledcomponents.png"),
+  router: require("./assets/images/router.png"),
+  redux: require("./assets/images/redux.png"),
+  dontUseContext: require("./assets/images/dontusecontext.png"),
+  dontUpdateContext: require("./assets/images/dontupdatecontext.png"),
+  broadcast: require("./assets/images/broadcast.png")
 };
 
 const FunHeading = styled(Heading)`
@@ -131,10 +142,9 @@ function enhance(WrappedComponent) {
 }
 `;
 
+const decoratorsSnippet = `
 
-const decoratorsSnippet =`
-
-`
+`;
 
 export default class Presentation extends React.Component {
   render() {
@@ -567,60 +577,150 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide transition={["slide"]} bgColor="primary">
+          <Heading fit caps lineHeight={1} textColor="secondary">
+            Context
+          </Heading>
+          <Heading fit caps lineHeight={1} textColor="secondary">
+            Pass data through the component tree <BlueHighlightBlock>without props</BlueHighlightBlock>
+          </Heading>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} textColor="tertiary">
+            React Tree
+          </Heading>
+          <Image src={images.tree} height="500px" />
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} textColor="tertiary">
+            Passing Props
+          </Heading>
+          <Image src={images.propsDestination} height="500px" />
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} textColor="tertiary">
+            Passing Props
+          </Heading>
+          <Image src={images.propsTravel} height="500px" />
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} textColor="tertiary">
+            Passing Props
+          </Heading>
+          <Image src={images.propsArrive} height="500px" />
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} textColor="tertiary">
+            Context
+          </Heading>
+          <Image src={images.treeContext} height="500px" />
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            What is it
+            Super useful!
           </Heading>
         </Slide>
 
         <Slide transition={["slide"]} bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Super useful, give translation example
+            Example: <BlueHighlightBlock>Translations</BlueHighlightBlock>
+          </Heading>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="secondary">
+          <Heading size={1} fit lineHeight={1} textColor="primary">
+            This sounds great...
+          </Heading>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="secondary">
+          <Heading size={1} fit lineHeight={1} textColor="primary">
+            Are you going to be a dick and
+          </Heading>
+          <Heading size={1} fit lineHeight={1} textColor="primary">
+            ruin it?
+          </Heading>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Appear>
+            <Heading size={1} fit caps lineHeight={1} textColor="secondary">
+              Yes
+            </Heading>
+          </Appear>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <BlockQuote>
+            <Quote textColor="secondary" textSize="48">
+              {" "}
+              The vast majority of applications do not need to use context. If you want your application to be stable,
+              don’t use context. It is an experimental API and it is likely to break in future releases of React.
+            </Quote>
+            <Cite>Like, "The Man" (React Docs)</Cite>
+          </BlockQuote>
+        </Slide>
+
+        <Slide transition={["slide"]} bgImage={images.dontUseContext} />
+
+        <Slide transition={["slide"]} bgImage={images.dontUpdateContext} />
+
+        <Slide transition={["slide"]} bgColor="primry">
+          <Heading size={1}>🇬🇧 ↔️ 🇫🇷 </Heading>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
+            But everyone
+          </Heading>
+          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
+            uses it!
+          </Heading>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primry">
+          <Image src={images.redux} />
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primry">
+          <Image src={images.router} />
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primry">
+          <Image src={images.styledComponents} />
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={5} caps lineHeight={1} margin={"50px 0"} textColor="secondary">
+            I want the <BlueHighlightBlock>availability</BlueHighlightBlock>
+          </Heading>
+          <Heading size={5} caps lineHeight={1}  margin={"50px 0"} textColor="secondary">
+            I want it to be <BlueHighlightBlock>updatable</BlueHighlightBlock>
           </Heading>
         </Slide>
 
         <Slide transition={["slide"]} bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Dont use it!
+            Small? Try <BlueHighlightBlock>Pub/Sub</BlueHighlightBlock>
           </Heading>
         </Slide>
 
-        <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            ....But everyone does?
-          </Heading>
-        </Slide>
-
-        <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            ...But you can't soon!
-          </Heading>
-        </Slide>
-
-        <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Locale example
-          </Heading>
-        </Slide>
-
-        <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            So pub sub uWu
-          </Heading>
-        </Slide>
+        <Slide transition={["slide"]} bgImage={images.broadcast} />
 
         {/* HIGHER ORDER COMPONENTS */}
 
         <Slide transition={["slide"]} bgColor="primary">
-          <FunHeading size={1} caps textColor="tertiary" margin={10}>
-            Higher
+          <FunHeading fit caps textColor="tertiary" margin={10}>
+            Higher Order
           </FunHeading>
 
-          <FunHeading size={1} caps textColor="tertiary" margin={10}>
-            Order
-          </FunHeading>
-
-          <FunHeading size={1} caps textColor="tertiary" margin={10}>
-            Components
+          <FunHeading fit caps textColor="tertiary" margin={10}>
+             Components
           </FunHeading>
         </Slide>
 
@@ -671,7 +771,7 @@ export default class Presentation extends React.Component {
             Grab router from context
           </Heading>
           <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
-            Pass down to <WrappedComponent> as prop
+            {"Pass down to <WrappedComponent> as prop"}
           </Heading>
         </Slide>
 
