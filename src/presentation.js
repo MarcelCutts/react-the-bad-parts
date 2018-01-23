@@ -73,7 +73,13 @@ const images = {
   redux: require("./assets/images/redux.png"),
   dontUseContext: require("./assets/images/dontusecontext.png"),
   dontUpdateContext: require("./assets/images/dontupdatecontext.png"),
-  broadcast: require("./assets/images/broadcast.png")
+  broadcast: require("./assets/images/broadcast.png"),
+  withRouter: require("./assets/images/withrouter.png"),
+  dogeCoin: require("./assets/images/dogecoin.jpg"),
+  dogeCoinBasic: require("./assets/images/dogecoinbasic.png"),
+  dogeCoinHoc: require("./assets/images/dogecoinhoc.png"),
+  dogeCoinRender: require("./assets/images/dogecoinrender.png"),
+  dogeCoinChild: require("./assets/images/dogecoinchild.png"),
 };
 
 const FunHeading = styled(Heading)`
@@ -738,7 +744,7 @@ export default class Presentation extends React.Component {
             Higher order components
           </Heading>
           <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
-            ♻️️ Great for code reuse
+            ♻️️ Let you share/reuse code
           </Heading>
           <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
             🆕 Replace mixins
@@ -747,6 +753,10 @@ export default class Presentation extends React.Component {
             📚 Composition, not inheritance
           </Heading>
         </Slide>
+
+        <Slide transition={["slide"]} bgImage={images.dogeCoin} />
+         <Slide transition={["slide"]} bgImage={images.dogeCoinBasic} />
+         <Slide transition={["slide"]} bgImage={images.dogeCoinHoc} />
 
         <Slide transition={["slide"]} bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="tertiary">
@@ -758,25 +768,16 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="tertiary">
-            Recognise this from your favourite libraries?
+          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
+            Recognise this from your 
+          </Heading>
+          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
+            favourite libraries?
           </Heading>
         </Slide>
 
         <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="tertiary">
-            React Router: <BlueHighlightBlock>withRouter()</BlueHighlightBlock>
-          </Heading>
-          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
-            Grab router from context
-          </Heading>
-          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
-            {"Pass down to <WrappedComponent> as prop"}
-          </Heading>
-        </Slide>
-
-        <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="tertiary">
+          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
             Decorators <BlueHighlightBlock>@</BlueHighlightBlock>
           </Heading>
         </Slide>
@@ -794,130 +795,30 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} fit lineHeight={1} textColor="Tertiary">
-            Ceremony
+          <Heading size={4} textAlign="left" lineHeight={1}  textColor="secondary">
+          <BlueHighlightBlock>Ceremony</BlueHighlightBlock><br />A lot of boilerplate
           </Heading>
-          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
-            - Hoist over static properties
+          <Heading size={4} textAlign="left" lineHeight={1} margin={"40px 0"} textColor="secondary">
+          <BlueHighlightBlock>Indirection</BlueHighlightBlock><br />Where are props from?
           </Heading>
-          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
-            - Ref callbacks (not _really_ a prop)
+          <Heading size={4} textAlign="left" lineHeight={1} margin={"40px 0"} textColor="secondary">
+          <BlueHighlightBlock>Collisions</BlueHighlightBlock><br />Overriding props danger
           </Heading>
-          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
-            - New component layer each time
+          <Heading size={4} textAlign="left" lineHeight={1} margin={"40px 0"} textColor="secondary">
+            <BlueHighlightBlock>Static composition</BlueHighlightBlock><br />Once it's loaded, bam!
           </Heading>
         </Slide>
 
-        <Slide transition={["slide"]} bgColor="secondary">
-          <LargeCodePane source={hoistNonReactStaticSnippet} lang="javascript" />
-        </Slide>
+        <Slide transition={["slide"]} bgImage={images.withRouter} />
 
         <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} fit lineHeight={1} textColor="tertiary">
-            Indirection
-          </Heading>
-          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
-            A component shows <BlueHighlightBlock>incorrect data</BlueHighlightBlock>
-          </Heading>
-          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
-            Component is wrapped by 3 higher order components
-          </Heading>
-          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
-            Which higer order component(s) are wrong?
-          </Heading>
-        </Slide>
-
-        <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} fit lineHeight={1} textColor="tertiary">
-            Naming
-          </Heading>
-          <Heading size={5} lineHeight={1} textColor="secondary">
-            Two higher order components are applied
-          </Heading>
-          <Heading size={5} lineHeight={1} textColor="secondary">
-            Both want to apply a value to prop.beerLeft
-          </Heading>
-          <Heading size={5} lineHeight={1} textColor="secondary">
-            Last one wins.
-          </Heading>
-          <Heading size={5} lineHeight={1} textColor="secondary">
-            Two higher order components are applied
-          </Heading>
-        </Slide>
-
-        <Slide transition={["slide"]} bgColor="secondary">
-          <Heading size={1} fit lineHeight={1} textColor="primary">
-            Lifecycle drawbacks
-          </Heading>
-          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
-            Composition is static
-          </Heading>
-          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
-            Can't wrap component in render 💥
-          </Heading>
-          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
-            Can't utilise lifecycle methods
-          </Heading>
-        </Slide>
-
-        <Slide transition={["slide"]} bgColor="secondary">
-          <Heading size={1} fit lineHeight={1} textColor="primary">
-            In short
-          </Heading>
-          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
-            - Harder to track props
-          </Heading>
-          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
-            - Debugging is harder
-          </Heading>
-          <Heading caps size={5} textAlign="left" textColor="secondary" margin={"30px 0 0 50px"}>
-            - Can lead to subtle errors
-          </Heading>
-        </Slide>
-
-        <Slide transition={["slide"]} bgColor="secondary">
-          <Heading size={1} fit lineHeight={1} textColor="primary">
-            Is there anything <BlueHighlightBlock>better?</BlueHighlightBlock>
-          </Heading>
-        </Slide>
-
-        <Slide transition={["slide"]} bgColor="secondary">
-          <Heading size={1} fit lineHeight={1} textColor="primary">
+          <Heading size={1} fit caps lineHeight={1} textColor="tertiary">
             Render props
           </Heading>
         </Slide>
 
-        {/* Higher orer function} */}
-
-        <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Declarative, yay! Encapsulate logic DRY
-          </Heading>
-        </Slide>
-
-        <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Redux
-          </Heading>
-        </Slide>
-
-        <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Indirection static vs dynamic composition naming collison Stack -> mess to test
-          </Heading>
-        </Slide>
-
-        <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Testing
-          </Heading>
-        </Slide>
-
-        <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Render props
-          </Heading>
-        </Slide>
+        <Slide transition={["slide"]} bgImage={images.dogeCoinRender} />
+        <Slide transition={["slide"]} bgColor="primary" bgImage={images.dogeCoinChild} />
 
         {/* Unsolved frustrations *
            - Router
@@ -930,11 +831,43 @@ export default class Presentation extends React.Component {
 
         {/* hopefully we won't have to bother making forms or styles, those skills and roles and we can move onto projects that matter like a  */}
 
-        <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Thanks
-          </Heading>
-        </Slide>
+ <Slide transition={["slide"]} bgColor="primary">
+    <Heading fit caps textColor="tertiary">
+      Thanks
+    </Heading>
+    <Heading fit caps textColor="secondary" margin={"0 0 80px 0"}>
+      for listening!
+    </Heading>
+    <Layout>
+      <Fill>
+        <Heading
+          size={6}
+          caps
+          textColor="primary"
+          bgColor="tertiary"
+          margin={10}
+          padding={"5px 0"}
+        >
+          Marcel Cutts
+    </Heading>
+      </Fill>
+      <Fill>
+        <Heading
+          size={6}
+          caps
+          textColor="primary"
+          bgColor="tertiary"
+          margin={10}
+          padding={"5px 0"}
+        >
+          <TwitterBlock>
+          @marcelcutts
+          <Image src={images.twitter} height="30px" margin="5px 0 0 5px" />
+        </TwitterBlock>
+        </Heading>
+      </Fill>
+    </Layout>
+  </Slide>
       </Deck>
     );
   }
