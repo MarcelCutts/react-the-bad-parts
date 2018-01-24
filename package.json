@@ -2,12 +2,16 @@
   "name": "react-the-bad-parts",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://MarcelCutts.github.io/react-the-bad-parts",
   "dependencies": {
+    "gh-pages": "^1.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "spectacle-scripts": "2.0.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
